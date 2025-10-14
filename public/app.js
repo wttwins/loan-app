@@ -502,12 +502,14 @@ class LoanApp {
 
       const newLoan = await response.json();
       console.log('API Response:', newLoan); // 调试日志
-      
+
       // 重新获取最新数据以确保同步
       await this.fetchLoans();
-      
+
       // 强制重新渲染
-      this.expandedBorrowers.add(newLoan.borrowerId);
+      if (newLoan && typeof newLoan.borrowerId !== 'undefined') {
+        this.expandedBorrowers.add(String(newLoan.borrowerId));
+      }
       this.render();
       this.setupEventListeners();
       
@@ -583,7 +585,7 @@ class LoanApp {
       this.expandedBorrowers.add(borrowerId);
     }
     
-    // Re-render the affected group
+    // 重新渲染整个界面以反映最新的展开状态
     this.render();
     this.setupEventListeners();
   }
