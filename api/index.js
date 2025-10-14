@@ -142,7 +142,7 @@ router.post('/loans', (req, res) => {
   }
 
   try {
-    loans.push({
+    const createdLoan = {
       id: Date.now(),
       amount: parseFloat(newLoan.amount),
       borrowerId: parseInt(newLoan.borrowerId),
@@ -150,9 +150,11 @@ router.post('/loans', (req, res) => {
       description: newLoan.description || '',
       is_repaid: false,
       created_at: new Date().toISOString()
-    });
+    };
+
+    loans.push(createdLoan);
     fs.writeFileSync(path.join(dataDir, 'loans.json'), JSON.stringify(loans, null, 2));
-    return res.json({ success: true });
+    return res.status(201).json(createdLoan);
   } catch (err) {
     return res.status(500).json({ error: 'Failed to save loan' });
   }
