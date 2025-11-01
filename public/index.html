@@ -6,6 +6,57 @@
   <title>借贷管理系统</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    .repayment-history-list {
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc transparent;
+    }
+    
+    .repayment-history-list::-webkit-scrollbar {
+      height: 6px;
+    }
+    
+    .repayment-history-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    .repayment-history-list::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 3px;
+    }
+    
+    .repayment-history-list .card {
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    
+    .repayment-history-list .card:hover {
+      transform: translateY(-2px);
+    }
+    
+    .repayment-history-row .card-body {
+      padding: 0.8rem;
+    }
+    
+    .close-history {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    
+    .close-history:hover {
+      background-color: #e9ecef;
+    }
+
+    .repayment-history-row .bg-light {
+      border: 1px solid rgba(0,0,0,.125);
+    }
+  </style>
 </head>
 <body>
   <div id="app">

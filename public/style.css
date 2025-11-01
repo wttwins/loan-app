@@ -12,6 +12,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  font-weight: 500;
 }
 
 * {
@@ -212,7 +213,7 @@ tr.repaid td {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
+  padding: 12px 20px;
   cursor: pointer;
   background-color: var(--bg-color);
 }
@@ -222,12 +223,24 @@ tr.repaid td {
 }
 
 .total-amount {
-  font-weight: bold;
-  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .toggle-icon {
   font-size: 12px;
+  color: var(--primary-color);
+  transition: transform 0.3s ease;
+}
+
+.group-header[data-expanded="true"] .toggle-icon {
+  transform: rotate(90deg);
 }
 
 .loan-list {
@@ -259,4 +272,550 @@ tr.repaid td {
 
 .loan-list th {
   background-color: var(--bg-color);
+}
+
+.loan-summary {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.loan-summary .summary-item {
+  text-align: center;
+  padding: 0 15px;
+}
+
+.loan-summary .summary-item .label {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 5px;
+}
+
+.loan-summary .summary-item .amount {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.loan-summary .summary-item:not(:last-child) {
+  border-right: 1px solid #dee2e6;
+}
+
+.repayment-history-row td {
+  padding: 20px !important;
+  background-color: #f8f9fa;
+}
+
+.repayment-table {
+  width: 100%;
+  margin: 0;
+  background-color: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.repayment-table th,
+.repayment-table td {
+  padding: 12px 16px;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.repayment-table th {
+  background-color: var(--bg-color);
+  border-bottom: 2px solid var(--border-color);
+  font-weight: 500;
+}
+
+.repayment-table td {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.repayment-table .btn {
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.repayment-table .far {
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.repayment-form-row td {
+  padding: 20px !important;
+  background-color: #f8f9fa;
+}
+
+.repayment-form-row .card {
+  text-align: left;
+  padding: 20px !important;
+}
+
+.repayment-form-row .row {
+  display: flex;
+  margin: 0 -10px;  /* 负边距创建列间距 */
+  width: 100%;
+}
+
+.repayment-form-row .col-md-4 {
+  flex: 0 0 33.333333%;
+  padding: 0 10px;  /* 列间距 */
+  margin-bottom: 0;
+}
+
+/* 输入框组样式 */
+.repayment-form-row .form-group {
+  margin-bottom: 15px;
+}
+
+.repayment-form-row .form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+.repayment-form-row .form-control {
+  width: 100%;
+  height: 38px;
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* 按钮容器样式 */
+.repayment-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.repayment-actions .btn {
+  min-width: 80px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  /* 隐藏表头 */
+  .loan-list thead {
+    display: none;
+  }
+
+  /* 修改表格行为卡片式布局 */
+  .loan-list tr {
+    display: block;
+    margin-bottom: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 15px;
+  }
+
+  /* 修改单元格显示方式 */
+  .loan-list td {
+    display: block;
+    padding: 8px 0;
+    border: none;
+    text-align: left !important;
+    white-space: normal;
+  }
+
+  /* 为每个单元格添加标签 */
+  .loan-list td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #666;
+    margin-right: 10px;
+    min-width: 90px;
+    display: inline-block;
+  }
+
+  /* 调整按钮容器样式 */
+  .loan-list td .d-flex {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+  }
+
+  /* 调整按钮样式 */
+  .loan-list td .btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  /* 隐藏多余的边框 */
+  .loan-list td {
+    border-bottom: none;
+  }
+
+  /* 添加分隔线 */
+  .loan-list td:not(:last-child) {
+    border-bottom: 1px solid #eee;
+  }
+
+  .repayment-form-row .row {
+    margin: 0 -5px;
+  }
+
+  .repayment-form-row .col-md-4 {
+    padding: 0 5px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  /* 还款记录表格响应式 */
+  .repayment-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 借贷人分组标题响应式 */
+  .group-header {
+    flex-direction: column;
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .borrower-name {
+    width: 100%;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .total-amount {
+    width: 100%;
+    justify-content: center;
+    padding: 8px;
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* 调整展开/收起图标位置 */
+  .toggle-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* 按钮组响应式布局 */
+  .d-flex.gap-2 {
+    flex-wrap: wrap;
+    gap: 5px !important;
+  }
+
+  .d-flex.gap-2 button {
+    flex: 1;
+    min-width: 80px;
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+
+  /* 部分还款表单适配 */
+  .repayment-form-row .row {
+    flex-direction: column;
+  }
+
+  .repayment-form-row .col-md-4 {
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 15px;
+  }
+
+  .repayment-form-row .card {
+    padding: 15px !important;
+  }
+
+  .repayment-form-row h5 {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  /* 还款记录表格适配 */
+  .repayment-table thead {
+    display: none;
+  }
+
+  .repayment-table,
+  .repayment-table tbody,
+  .repayment-table tr,
+  .repayment-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .repayment-table tr {
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    background: white;
+  }
+
+  .repayment-table td {
+    padding: 8px !important;
+    text-align: left !important;
+    border: none;
+  }
+
+  .repayment-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #666;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .repayment-table td:not(:last-child) {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  /* 调整按钮样式 */
+  .repayment-actions-center {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .repayment-actions-center .btn {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* 调整删除按钮样式 */
+  .repayment-table .btn-danger {
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+
+/* 优化移动端表单样式 */
+@media screen and (max-width: 576px) {
+  .add-loan .form-group {
+    margin-bottom: 15px;
+  }
+
+  .add-loan input,
+  .add-loan select,
+  .add-loan textarea {
+    font-size: 16px; /* 防止iOS自动缩放 */
+    padding: 8px;
+  }
+
+  .loan-list th,
+  .loan-list td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .delete-btn,
+  .repayment-btn,
+  .history-btn {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  /* 优化还款表单在移动端的显示 */
+  .repayment-form-row .card {
+    padding: 15px !important;
+  }
+
+  .repayment-form-row h5 {
+    font-size: 16px;
+  }
+
+  .repayment-form-row .form-label {
+    font-size: 14px;
+  }
+
+  .repayment-form-row .btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+/* 添加滚动条样式 */
+.loan-list::-webkit-scrollbar,
+.repayment-table::-webkit-scrollbar {
+  height: 6px;
+}
+
+.loan-list::-webkit-scrollbar-track,
+.repayment-table::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.loan-list::-webkit-scrollbar-thumb,
+.repayment-table::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.loan-list::-webkit-scrollbar-thumb:hover,
+.repayment-table::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* 覆盖 Bootstrap 的默认样式 */
+.repayment-form-row [class*="text-"] {
+  text-align: left !important;
+}
+
+.repayment-form-row .form-label {
+  text-align: left !important;
+  padding-left: 0;
+}
+
+.repayment-form-row .form-control {
+  text-align: left;
+}
+
+/* 部分还款按钮居中样式 */
+.repayment-actions-center {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.repayment-actions-center .btn {
+  min-width: 100px;
+  padding: 8px 16px;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.login-form {
+  background-color: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.5s ease;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.login-form .form-group {
+  margin-bottom: 25px;
+}
+
+.login-form .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.login-form .form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e1e1e1;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.login-form .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(64, 158, 255, 0.1);
+  outline: none;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to right, var(--primary-color), #66b1ff);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  background: linear-gradient(to right, #66b1ff, var(--primary-color));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(64, 158, 255, 0.2);
+}
+
+.btn-login:active {
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn-logout {
+  padding: 8px 16px;
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background-color: #f78989;
+}
+
+/* 添加输入框图标 */
+.input-group {
+  position: relative;
+}
+
+.input-group i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.input-group .form-control {
+  padding-left: 45px;
 }
