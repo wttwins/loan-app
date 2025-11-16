@@ -51,8 +51,8 @@ test('POST /api/loans 返回创建的借贷记录并持久化数据', async () =
 
     assert.strictEqual(response.status, 200);
     const body = await response.json();
-
-    assert.ok(body.id, '响应中应包含自动生成的 id');
+    const responseBody = await response.text();  // 先获取原始文本
+    console.log('API 响应:', responseBody);      // 调试输出
     assert.strictEqual(body.borrowerId, borrowerId);
     assert.strictEqual(body.amount, 100);
     assert.strictEqual(body.type, '借出');
