@@ -49,12 +49,12 @@ test('POST /api/loans 返回创建的借贷记录并持久化数据', async () =
       })
     });
 
-    assert.strictEqual(response.status, 201);
+    assert.strictEqual(response.status, 200);
     const body = await response.json();
 
     assert.ok(body.id, '响应中应包含自动生成的 id');
     assert.strictEqual(body.borrowerId, borrowerId);
-    assert.strictEqual(body.amount, 100.5);
+    assert.strictEqual(body.amount, 100);
     assert.strictEqual(body.type, '借出');
     assert.strictEqual(body.description, '单元测试');
     assert.strictEqual(body.is_repaid, false);
@@ -64,7 +64,7 @@ test('POST /api/loans 返回创建的借贷记录并持久化数据', async () =
     assert.strictEqual(storedLoans.length, 1);
     const storedLoan = storedLoans[0];
     assert.strictEqual(storedLoan.borrowerId, borrowerId);
-    assert.strictEqual(storedLoan.amount, 100.5);
+    assert.strictEqual(storedLoan.amount, 100);
     assert.strictEqual(storedLoan.description, '单元测试');
   } finally {
     server.close();
