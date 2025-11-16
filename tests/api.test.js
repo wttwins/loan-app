@@ -43,7 +43,7 @@ test('POST /api/loans 返回创建的借贷记录并持久化数据', async () =
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         borrowerId: String(borrowerId),
-        amount: 100.5,
+        amount: 100,
         type: '借出',
         description: '单元测试'
       })
