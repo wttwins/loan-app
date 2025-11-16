@@ -5,7 +5,7 @@ FROM node:18-alpine
 WORKDIR /tmp
 
 # 将当前目录的内容复制到容器中的工作目录
-COPY server.js package.json ./
+COPY server.js package.json public  ./
 
 # 安装应用依赖
 RUN npm install
