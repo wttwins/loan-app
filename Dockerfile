@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # 设置工作目录
-WORKDIR /tmp
+WORKDIR /app
 
 # 将当前目录的内容复制到容器中的工作目录
 COPY server.js package.json public  ./
