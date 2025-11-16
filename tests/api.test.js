@@ -50,9 +50,9 @@ test('POST /api/loans 返回创建的借贷记录并持久化数据', async () =
     });
 
     assert.strictEqual(response.status, 200);
-    const body = await response.json();
     const responseBody = await response.text();  // 先获取原始文本
     console.log('API 响应:', responseBody);      // 调试输出
+    const body = await response.json();
     assert.strictEqual(body.borrowerId, borrowerId);
     assert.strictEqual(body.amount, 100);
     assert.strictEqual(body.type, '借出');
