@@ -4,10 +4,12 @@
   "description": "Loan management application",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node tests/api.test.js"
   },
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5"
   }
 }
+
